@@ -126,7 +126,7 @@ while running:
             if event.button == 1: # Check for left click released
                 for pc in pieces:
                     if pc.isSelected: # Ensure only clicked piece is moved
-                        pc.hitbox.center = min((loc for row in locations for loc in row), key=lambda c: math.dist(c, mousePosition)) # Place at grid location on release
+                        pc.hitbox.center = min((loc for row in locations for loc in row if type(loc) != str), key=lambda c: math.dist(c, mousePosition)) # Place at grid location on release
                         dragging = False     
                         pc.isSelected = False
                         
