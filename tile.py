@@ -14,6 +14,16 @@ class MyFunctions:
             if value in row:
                 return (idx, row.index(value))
         return 'You Messed Up'
+    
+    def matDifference(matrix: list, reference: tuple, target: tuple) ->  tuple:
+        # Find indices of reference and target
+        referenceLocation = MyFunctions.matIndex(matrix, reference)
+        targetLocation = MyFunctions.matIndex(matrix, target)
+
+        return (-1 * (targetLocation[0] - referenceLocation[0]), targetLocation[1] - referenceLocation[1])
+
+    
+    
 
 
 
@@ -28,7 +38,11 @@ class Tile:
 
 class MoveSet():
 
-    def Pawn():
+    def Pawn(board: list, locations: list, chessPiece: Tile, pieces: list):
+
+        if len(chessPiece.locationHistory) > 1 and ():
+            pass
+            
 
         return True
 
@@ -65,7 +79,7 @@ class MoveSet():
 
         # Get piece location based on board row and column index
         pcsIdx = MyFunctions.matIndex(locations, chessPiece.locationHistory[-1])
-        legalMoves = [(pcsIdx[0] - 1, pcsIdx[1]), (pcsIdx[0] - 2, pcsIdx[1])]
+        
 
         
 
