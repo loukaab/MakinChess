@@ -19,13 +19,7 @@ class MyFunctions:
         # Find indices of reference and target
         referenceLocation = MyFunctions.matIndex(matrix, reference)
         targetLocation = MyFunctions.matIndex(matrix, target)
-
         return (-1 * (targetLocation[0] - referenceLocation[0]), targetLocation[1] - referenceLocation[1])
-
-    
-    
-
-
 
 class Tile:
 
@@ -38,13 +32,23 @@ class Tile:
 
 class MoveSet():
 
-    def Pawn(board: list, locations: list, chessPiece: Tile, pieces: list):
+    def __init__(self):
+        self.checks = {'p': self.Pawn, 
+                  'n': self.Knight, 
+                  'b': self.Bishop, 
+                  'r': self.Rook, 
+                  'k': self.King, 
+                  'q': self.Queen}
 
-        if len(chessPiece.locationHistory) > 1 and ():
-            pass
-            
+    def Pawn(self, board: list, locations: list, chessPiece: Tile, pieces: list, locationDifference):
 
-        return True
+        if len(chessPiece.locationHistory) <= 1 and (locationDifference == (1, 0) or locationDifference == (2, 0)):
+            return True
+        elif len(chessPiece.locationHistory) > 1 and locationDifference == (1, 0):
+            return True
+        else:
+            return False
+        
 
     def Knight():
 
@@ -66,9 +70,8 @@ class MoveSet():
 
         return True
     
-    checks = {'p': Pawn(), 'n': Knight(), 'b': Bishop(), 'r': Rook(), 'k': King(), 'q': Queen()}
 
-    def MoveCheck(board: list, locations: list, chessPiece: Tile, pieces: list):
+    def MoveCheck(self, board: list, locations: list, chessPiece: Tile, pieces: list) -> bool:
         
         validMove = False
 
@@ -79,10 +82,10 @@ class MoveSet():
 
         # Get piece location based on board row and column index
         pcsIdx = MyFunctions.matIndex(locations, chessPiece.locationHistory[-1])
-        
 
-        
+        locDif = MyFunctions.matDifference(locations, chessPiece.locationHistory[-1], chessPiece.hitbox.center)
+        print(locDif)
 
-        return validMove
+        return self.checks['p'](board, locations, chessPiece, pieces, locDif)
     
 

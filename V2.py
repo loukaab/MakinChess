@@ -2,8 +2,9 @@ import pygame as py
 import os, sys, math 
 from tile import Tile, MoveSet
 
-# initialize pygame
+# initialize pygame and MoveSets
 py.init()
+moveEngine = MoveSet()
 
 def drawBoard():
     
@@ -130,7 +131,7 @@ while running:
                         dragging = False     
                         pc.isSelected = False
                         
-                        if MoveSet.MoveCheck(board, locations, pc, pieces): # Check if movement was legal
+                        if moveEngine.MoveCheck(board, locations, pc, pieces): # Check if movement was legal
                             pc.locationHistory.append(pc.hitbox.center)
                         else:
                             pc.hitbox.center = pc.locationHistory[-1]
